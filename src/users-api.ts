@@ -12,7 +12,10 @@ app.use(express.json());
 const users: { name: string }[] = [];
 
 app.post('/user', (req: Request, res: Response) => {
-    res.status(200).send();
+    const { name } = req.body;
+
+    users.push({ name })
+    res.status(200).json({ name });
 });
 
 app.get('/users', (req: Request, res: Response) => {

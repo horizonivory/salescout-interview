@@ -4,9 +4,16 @@
 // 3. Reads and outputs values for a given key.
 
 // Use redis library
+/*import redis from 'redis'
+
+const client = redis.createClient();
+
+client.on('connect', () => {
+    console.log('Connected to Redis')
+})*/
 
 async function manageRedis(): Promise<void> {
-    // Your code goes here
+    
 }
 
 module.exports = { manageRedis };

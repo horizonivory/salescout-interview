@@ -11,7 +11,6 @@ type DuplicatedUsers = {
 }
 
 async function manageUsers(): Promise<DuplicatedUsers[]> {
-    // Your code goes here   
     return []
 }
 

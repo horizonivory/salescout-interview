@@ -18,18 +18,19 @@ type RequestsResult = {
 
 async function fetchAll(urls: string[]): Promise<RequestsResult[]> {
     const results: RequestsResult[] = [];
+
     for (let i=0; i < urls.length; i++) {
         const url = urls[i];
-        try {
-            const response = await fetch(url);
-            const data = await response.json();
-            results.push({ data: data, status: response.status});
+        const response = await fetch(url);
+        if(!response.ok) {
+            results.push({data: null, status: response.status});
         }
-        catch (error) {
-            results.push({ data: null, status: 404});
+        else {
+            const data = await response.json();
+            results.push({data: data, status: response.status});
         }
     }
-    return results;
+    return Promise.all(results);
 }
 
 module.exports = { fetchAll };

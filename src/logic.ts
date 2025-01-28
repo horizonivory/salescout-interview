@@ -6,8 +6,22 @@ type Product = {
 };
  
 function filterAndSortProducts(products: Product[]): Product[] {
-    // Your code goes here
-    return [] 
+    const uniqueProd: Product[] = [];
+    for (let i = 0; i < products.length; i++) {
+        let isUnique = true;
+        for (let j = 0; j < uniqueProd.length; j++) {
+            if (products[i].name === uniqueProd[j].name) {
+                isUnique = false;
+                break;
+            }
+        }
+        if(isUnique) {
+            uniqueProd.push(products[i]);
+        }
+    }
+    uniqueProd.sort((a,b) => a.price - b.price);
+
+    return uniqueProd; 
 }
 
 module.exports = { filterAndSortProducts }
