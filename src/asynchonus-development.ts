@@ -17,8 +17,19 @@ type RequestsResult = {
 }
 
 async function fetchAll(urls: string[]): Promise<RequestsResult[]> {
-    //Your code goes here
-    return [];
+    const results: RequestsResult[] = [];
+    for (let i=0; i < urls.length; i++) {
+        const url = urls[i];
+        try {
+            const response = await fetch(url);
+            const data = await response.json();
+            results.push({ data: data, status: response.status});
+        }
+        catch (error) {
+            results.push({ data: null, status: 404});
+        }
+    }
+    return results;
 }
 
 module.exports = { fetchAll };
